@@ -1,0 +1,12 @@
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+
+*.csv
+*.zip
+
+catboost_info/
+
+.venv/
+venv/
+env/
