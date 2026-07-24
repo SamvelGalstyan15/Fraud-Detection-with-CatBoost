@@ -22,7 +22,7 @@ class Transaction(BaseModel):
 @app.post("/predict")
 def predict_fraud(data: Transaction):
     try:
-        input_data = pd.DataFrame(data)
+        input_data = pd.DataFrame([data.model_dump()])
         proba = float(model.predict_proba(input_data)[0, 1])
         is_fraud = 1 if proba >= 0.0943 else 0
           
