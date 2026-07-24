@@ -41,3 +41,67 @@ Analysis using CatBoost's native feature evaluation revealed the main indicators
 
 4.  <img width="2400" height="1200" alt="feature_importance" src="https://github.com/user-attachments/assets/c04f76b2-9175-4731-a7e7-94029e8f0c09" />
 
+## 🚀 Deployment & API (predict.py)
+
+The repository includes a lightweight web service built with **FastAPI** to serve the model for real-time inference. The service automatically validates incoming requests via **Pydantic** models and returns an immediate transaction verdict.
+
+### Environment Setup & Local Run
+
+1. **Create a virtual environment:**
+   ```bash
+   python -m venv venv
+   ```
+
+2. **Activate the virtual environment:**
+   * On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   * On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Launch the Uvicorn server:**
+   ```bash
+   python predict.py
+   ```
+
+### Interactive Documentation (Swagger UI)
+Once the server is up, open your browser and navigate to:
+👉 `http://localhost:8000/docs`
+
+This interactive Swagger UI provides the auto-generated **OpenAPI JSON Schema**, allowing backend developers to review exact data fields and test requests live via the **"Try it out"** button.
+
+### API Specification
+
+* **Method:** `POST`
+* **Endpoint:** `/predict`
+* **Request Body Format (JSON):**
+```json
+{
+  "step": 1,
+  "type": "TRANSFER",
+  "amount": 5000.00,
+  "oldbalanceOrg": 5500.00,
+  "newbalanceOrig": 500.00,
+  "oldbalanceDest": 0.00,
+  "newbalanceDest": 5000.00
+}
+```
+
+* **Successful Response Format (JSON):**
+```json
+{
+  "status": "success",
+  "verdict": "BLOCK",
+  "fraud_probability": 0.85412,
+  "threshold_applied": 0.0943
+}
+```
+*Note: If `fraud_probability` is greater than or equal to `0.0943`, the service returns `"BLOCK"`, otherwise it returns `"ALLOW"`.*
