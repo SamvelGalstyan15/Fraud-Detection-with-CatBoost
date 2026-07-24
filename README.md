@@ -35,6 +35,9 @@ By finding the optimal precision-recall balance at `best_threshold = 0.0943`, th
 ## 🛠️ Feature Importance (Key Decision Drivers)
 
 Analysis using CatBoost's native feature evaluation revealed the main indicators triggering fraud detection:
-1.  `oldbalanceOrg` — Origin account balance before the transaction.
-2.  `amount` — Total transaction value.
-3.  `newbalanceOrig` — Origin account balance after the transaction.
+1. `newbalanceOrig` — Origin account balance after the transaction.
+2. `oldbalanceOrg` — Origin account balance before the transaction.
+3. `amount` — Total transaction value.
+
+4.  <img width="2400" height="1200" alt="feature_importance" src="https://github.com/user-attachments/assets/c04f76b2-9175-4731-a7e7-94029e8f0c09" />
+
